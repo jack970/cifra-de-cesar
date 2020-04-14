@@ -4,15 +4,13 @@ import os
 
 
 def decoder(frase, chave):
-    return [letras.index((frase[i] + chave) % 26)
-                       for i in frase
-                       if i in letras]
+    return ''.join([letras[(letras.index(i) + chave) % 26]
+                    for i in frase
+                        if i in letras])
 
 def encoder(frase, chave):
-    descifrada = ''.join([letras[letras.index(frase[i]) - chave]
-                       for i in range(len(frase))
-                       if frase[i] in letras])
-    return descifrada
+    return ''.join([letras[letras.index(i) - chave]
+                       for i in frase if i in letras]
 
 def main():
     opcao = ''
