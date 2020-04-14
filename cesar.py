@@ -3,13 +3,16 @@ from string import ascii_lowercase
 import os
 
 
-def encoder(frase, chave):
-    return ''.join([letras[(letras.index(i) + chave) % 26]
-                       for i in frase if i in letras])
-
 def decoder(frase, chave):
-    return ''.join([letras[letras.index(i) - chave]
-                       for i in frase if i in letras])
+    return [letras.index((frase[i] + chave) % 26)
+                       for i in frase
+                       if i in letras]
+
+def encoder(frase, chave):
+    descifrada = ''.join([letras[letras.index(frase[i]) - chave]
+                       for i in range(len(frase))
+                       if frase[i] in letras])
+    return descifrada
 
 def main():
     opcao = ''
@@ -26,7 +29,7 @@ def main():
 
         if opcao == '1':
             palavra = raw_input('Insira uma palavra a ser descifrada: ').upper()
-            print('\nFRASE | CHAVE\n--------------')
+            print('\nFRASE | CHAVE\n-----------')
             for i in range(1, 26):
                 print(decoder(palavra, i) + ' = ' + str(i))
         elif opcao == '0':
