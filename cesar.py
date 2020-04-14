@@ -10,7 +10,7 @@ def decoder(frase, chave):
 
 def encoder(frase, chave):
     return ''.join([letras[letras.index(i) - chave]
-                       for i in frase if i in letras]
+                       for i in frase if i in letras])
 
 def main():
     opcao = ''
